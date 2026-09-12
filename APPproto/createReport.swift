@@ -2,13 +2,11 @@ import SwiftUI
 
 struct CrearReporteView: View {
 
-    // MARK: - Estado del formulario
+    // Borrador compartido con el resto del flujo.
+    @StateObject private var draft = ReporteDraft()
 
-    @State private var titulo: String = ""
-    @State private var plataforma: String = ""
-    @State private var tipoFraude: String = ""
-    @State private var descripcion: String = ""
-    @State private var esAnonimo: Bool = false
+    // Controla el paso a la pantalla de evidencia.
+    @State private var irAEvidencia = false
 
     // Opciones provisionales. Cuando el backend esté conectado, vienen del endpoint
     // de Plataforma y Categoria_fraude en lugar de estar aquí.
@@ -20,98 +18,101 @@ struct CrearReporteView: View {
         "Pago solicitado fuera de la plataforma"
     ]
 
-    private var formularioValido: Bool {
-        !titulo.trimmingCharacters(in: .whitespaces).isEmpty
-        && !plataforma.isEmpty
-        && !tipoFraude.isEmpty
-        && !descripcion.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-
     // MARK: - Body
 
     var body: some View {
-        ZStack {
-            Color.csBackground.ignoresSafeArea()
+        NavigationView {
+            ZStack {
+                Color.csBackground.ignoresSafeArea()
 
-            ScrollView {
-                VStack(alignment: .leading, spacing: CSMetrics.sectionSpacing) {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: CSMetrics.sectionSpacing) {
 
-                    Text("Reportar posible fraude")
-                        .csTitle()
-                        .padding(.top, 8)
-                        .padding(.bottom, 4)
+                        Text("Reportar posible fraude")
+                            .csTitle()
+                            .padding(.top, 8)
+                            .padding(.bottom, 4)
 
-                    // Título del reporte
-                    campoDeTexto(
-                        etiqueta: "Título del reporte",
-                        texto: $titulo
-                    )
+                        campoDeTexto(
+                            etiqueta: "Título del reporte",
+                            texto: $draft.titulo
+                        )
 
-                    // Plataforma
-                    selector(
-                        etiqueta: "Plataforma",
-                        seleccion: $plataforma,
-                        opciones: plataformas
-                    )
+                        selector(
+                            etiqueta: "Plataforma",
+                            seleccion: $draft.plataforma,
+                            opciones: plataformas
+                        )
 
-                    // Tipo de fraude
-                    selector(
-                        etiqueta: "Tipo de fraude",
-                        seleccion: $tipoFraude,
-                        opciones: tiposDeFraude
-                    )
+                        selector(
+                            etiqueta: "Tipo de fraude",
+                            seleccion: $draft.tipoFraude,
+                            opciones: tiposDeFraude
+                        )
 
-                    // Descripción
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Descripción").csFieldLabel()
+                        // Descripción
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Descripción").csFieldLabel()
 
-                        ZStack(alignment: .topLeading) {
-                            if descripcion.isEmpty {
-                                Text("Describe qué pasó, cuándo y cómo ocurrió el posible fraude...")
+                            ZStack(alignment: .topLeading) {
+                                if draft.descripcion.isEmpty {
+                                    Text("Describe qué pasó, cuándo y cómo ocurrió el posible fraude...")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.csTextSecondary)
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 16)
+                                }
+
+                                TextEditor(text: $draft.descripcion)
                                     .font(.system(size: 14))
-                                    .foregroundColor(.csTextSecondary)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 16)
+                                    .foregroundColor(.csTextPrimary)
+                                    .scrollContentBackground(.hidden)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 8)
                             }
-
-                            TextEditor(text: $descripcion)
-                                .font(.system(size: 14))
-                                .foregroundColor(.csTextPrimary)
-                                .scrollContentBackground(.hidden)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 8)
+                            .frame(height: 120)
+                            .csSurface()
                         }
-                        .frame(height: 120)
-                        .csSurface()
-                    }
 
-                    // Publicar de forma anónima
-                    VStack(alignment: .leading, spacing: 6) {
-                        Toggle(isOn: $esAnonimo) {
-                            Text("Publicar de forma anónima")
-                                .font(.system(size: 14))
-                                .foregroundColor(.csTextPrimary)
+                        // Publicar de forma anónima
+                        VStack(alignment: .leading, spacing: 6) {
+                            Toggle(isOn: $draft.esAnonimo) {
+                                Text("Publicar de forma anónima")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(.csTextPrimary)
+                            }
+                            .tint(.csNavy)
+
+                            Text("El anonimato oculta tu identidad públicamente en el reporte.")
+                                .csCaption()
                         }
-                        .tint(.csNavy)
+                        .padding(.top, 4)
 
-                        Text("El anonimato oculta tu identidad públicamente en el reporte.")
-                            .csCaption()
-                    }
-                    .padding(.top, 4)
+                        // Continuar
+                        Button("Continuar") {
+                            irAEvidencia = true
+                        }
+                        .buttonStyle(CSPrimaryButtonStyle())
+                        .disabled(!draft.datosBasicosCompletos)
+                        .opacity(draft.datosBasicosCompletos ? 1 : 0.5)
+                        .padding(.top, 12)
 
-                    // Continuar
-                    Button("Continuar") {
-                        // Siguiente pantalla: AgregarEvidenciaView
+                        // Enlace invisible que dispara la navegación.
+                        NavigationLink(
+                            destination: AgregarEvidenciaView(draft: draft),
+                            isActive: $irAEvidencia
+                        ) {
+                            EmptyView()
+                        }
+                        .hidden()
                     }
-                    .buttonStyle(CSPrimaryButtonStyle())
-                    .disabled(!formularioValido)
-                    .opacity(formularioValido ? 1 : 0.5)
-                    .padding(.top, 12)
+                    .padding(.horizontal, CSMetrics.screenPadding)
+                    .padding(.vertical, 24)
                 }
-                .padding(.horizontal, CSMetrics.screenPadding)
-                .padding(.vertical, 24)
             }
+            .navigationBarHidden(true)
         }
+        .navigationViewStyle(.stack)
     }
 
     // MARK: - Subvistas
@@ -160,7 +161,8 @@ struct CrearReporteView: View {
 }
 
 // MARK: - Preview
-struct CCrearReporteView_Previews: PreviewProvider {
+
+struct CrearReporteView_Previews: PreviewProvider {
     static var previews: some View {
         CrearReporteView()
     }
