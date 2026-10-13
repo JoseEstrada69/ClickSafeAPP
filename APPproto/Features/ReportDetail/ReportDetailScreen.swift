@@ -146,6 +146,32 @@ struct ReportDetailScreen: View {
         .background(Color.csBackground.ignoresSafeArea())
         .navigationTitle(Text(verbatim: "Detalle del reporte"))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if let report = model.report,
+               report.esMio,
+               report.estado == .pending {
+                ToolbarItem(placement: .topBarTrailing) {
+                    DeleteReportButton(
+                        report: report,
+                        api: api,
+                        onEdited: {
+                            await model.refresh()
+
+                            guard !Task.isCancelled else {
+                                return
+                            }
+
+                            synchronizeLikeModel()
+                        }
+                    )
+                    .disabled(
+                        composerModel.isSending
+                            || likeModel?.isUpdating == true
+                            || model.isLoading
+                    )
+                }
+            }
+        }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             if model.report != nil {
                 CommentComposerView(

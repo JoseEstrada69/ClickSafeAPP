@@ -14,6 +14,7 @@ nonisolated enum ReportSearchRoute: Hashable {
 
 @MainActor
 struct ReportSearchResultsScreen: View {
+    let onReportPublication: (String?) -> Void
 
     private let query: ReportSearchQuery
 
@@ -22,9 +23,11 @@ struct ReportSearchResultsScreen: View {
 
     init(
         query: ReportSearchQuery,
-        api: any APIClient
+        api: any APIClient,
+        onReportPublication: @escaping (String?) -> Void
     ) {
         self.query = query
+        self.onReportPublication = onReportPublication
 
         _model = State(
             initialValue: ReportSearchResultsViewModel(
@@ -32,6 +35,25 @@ struct ReportSearchResultsScreen: View {
                 api: api
             )
         )
+    }
+
+    private var publicationURL: String? {
+        let text = query.text.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+
+        guard let components = URLComponents(string: text),
+              let scheme = components.scheme?.lowercased(),
+              scheme == "https" || scheme == "http",
+              let host = components.host,
+              !host.isEmpty,
+              components.user == nil,
+              components.password == nil,
+              components.url != nil else {
+            return nil
+        }
+
+        return text
     }
 
     var body: some View {
@@ -65,6 +87,11 @@ struct ReportSearchResultsScreen: View {
                             "La ausencia de reportes no garantiza que una persona o publicación sea legítima."
                     )
 
+                    PrimaryButton(
+                        title: "Reportar esta publicación"
+                    ) {
+                        onReportPublication(publicationURL)
+                    }
                 }
             }
 

@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeScreen: View {
     private let api: any APIClient
     private let onSearch: () -> Void
+    private let onReportPublication: (String?) -> Void
 
     @Environment(AppState.self) private var appState
 
@@ -22,10 +23,12 @@ struct HomeScreen: View {
 
     init(
         api: any APIClient,
-        onSearch: @escaping () -> Void
+        onSearch: @escaping () -> Void,
+        onReportPublication: @escaping (String?) -> Void
     ) {
         self.api = api
         self.onSearch = onSearch
+        self.onReportPublication = onReportPublication
 
         _model = State(
             initialValue: HomeReportsViewModel(api: api)
@@ -74,7 +77,8 @@ struct HomeScreen: View {
             case .results(let query):
                 ReportSearchResultsScreen(
                     query: query,
-                    api: api
+                    api: api,
+                    onReportPublication: onReportPublication
                 )
 
             case .reportDetail(let reportID):
@@ -209,6 +213,13 @@ struct HomeScreen: View {
                     action: onSearch
                 )
 
+                actionCard(
+                    title: "Reportar posible fraude",
+                    message: "Comparte tu experiencia para ayudar a otros",
+                    symbol: "plus.circle"
+                ) {
+                    onReportPublication(nil)
+                }
             }
         }
         .listRowBackground(Color.clear)

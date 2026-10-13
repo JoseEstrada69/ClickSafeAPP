@@ -16,6 +16,7 @@ struct ReportSearchScreen: View {
         var id: String { rawValue }
     }
 
+    let onReportPublication: (String?) -> Void
 
     private let api: any APIClient
     private let focusRequest: UUID?
@@ -30,10 +31,12 @@ struct ReportSearchScreen: View {
 
     init(
         api: any APIClient,
-        focusRequest: UUID? = nil
+        focusRequest: UUID? = nil,
+        onReportPublication: @escaping (String?) -> Void
     ) {
         self.api = api
         self.focusRequest = focusRequest
+        self.onReportPublication = onReportPublication
 
         _model = State(
             initialValue: ReportSearchViewModel(api: api)
@@ -53,7 +56,11 @@ struct ReportSearchScreen: View {
                     case .results(let query):
                         ReportSearchResultsScreen(
                             query: query,
-                            api: api
+                            api: api,
+                            onReportPublication: { publicationURL in
+                                path.removeAll()
+                                onReportPublication(publicationURL)
+                            }
                         )
 
                     case .reportDetail(let id):
