@@ -10,6 +10,7 @@ import SwiftUI
 @MainActor
 struct ProfileScreen: View {
     private enum Route: Hashable {
+        case myReports
         case editName
         case changePassword
     }
@@ -26,6 +27,9 @@ struct ProfileScreen: View {
                     ProfileView(
                         user: user,
                         isLoggingOut: appState.isLoggingOut,
+                        onMyReports: {
+                            path.append(Route.myReports)
+                        },
                         onEditName: {
                             path.append(Route.editName)
                         },
@@ -46,6 +50,9 @@ struct ProfileScreen: View {
                 for: Route.self
             ) { destination in
                 switch destination {
+                case .myReports:
+                    MyReportsScreen(api: api)
+
                 case .editName:
                     if let user = appState.currentUser {
                         EditNameScreen(
@@ -59,6 +66,17 @@ struct ProfileScreen: View {
 
                 case .changePassword:
                     ChangePasswordScreen(api: api)
+                }
+            }
+            .navigationDestination(
+                for: MyReportsRoute.self
+            ) { destination in
+                switch destination {
+                case .reportDetail(let reportID):
+                    ReportDetailScreen(
+                        reportID: reportID,
+                        api: api
+                    )
                 }
             }
         }

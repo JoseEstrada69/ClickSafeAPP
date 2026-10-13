@@ -5,18 +5,21 @@ struct MainTabView: View {
     private enum Tab: Hashable { case home, search, report, profile }
     let api: any APIClient
     @State private var selectedTab: Tab = .home
+    @State private var homePath: [ReportSearchRoute] = []
+    @State private var searchFocusRequest: UUID?
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationStack {
-                Color.clear.navigationTitle(Text(verbatim: "Inicio"))
+            NavigationStack(path: $homePath) {
+                HomeScreen(api: api, onSearch: {
+                    searchFocusRequest = UUID()
+                    selectedTab = .search
+                })
             }
             .tabItem { Label("Inicio", systemImage: "house") }
             .tag(Tab.home)
-            NavigationStack {
-                Color.clear.navigationTitle(Text(verbatim: "Buscar"))
-            }
-            .tabItem { Label("Buscar", systemImage: "magnifyingglass") }
-            .tag(Tab.search)
+            ReportSearchScreen(api: api, focusRequest: searchFocusRequest)
+                .tabItem { Label("Buscar", systemImage: "magnifyingglass") }
+                .tag(Tab.search)
             NavigationStack {
                 Color.clear.navigationTitle(Text(verbatim: "Reportar"))
             }

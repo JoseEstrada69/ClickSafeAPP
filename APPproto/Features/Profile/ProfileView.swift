@@ -17,6 +17,7 @@ struct ProfileView: View {
 
     let user: Me
     let isLoggingOut: Bool
+    let onMyReports: () -> Void
     let onEditName: () -> Void
     let onChangePassword: () -> Void
     let onLogout: (Bool) -> Void
@@ -82,6 +83,19 @@ struct ProfileView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, Theme.Spacing.withinCard)
             }
+            .listRowBackground(Color.csSurface)
+
+            Section {
+                Button(action: onMyReports) {
+                    Text(verbatim: "Mis reportes")
+                        .frame(
+                            minHeight: Theme.Size.minimumTouchTarget
+                        )
+                }
+            } header: {
+                Text(verbatim: "Mi actividad")
+            }
+            .foregroundStyle(Color.csNavy)
             .listRowBackground(Color.csSurface)
 
             Section {

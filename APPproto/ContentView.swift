@@ -36,6 +36,10 @@ struct ContentView: View {
                 }
                 .environment(runtime.appState)
                 .environment(
+                    \.evidenceBaseURL,
+                    configuration.apiBaseURL
+                )
+                .environment(
                     \.mockEvidenceImagesEnabled,
                     configuration.useMockAPI
                 )
