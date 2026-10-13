@@ -46,6 +46,7 @@ struct CaptchaSolverTests {
             "signature",
             "took"
         ]
+
         #expect(Set(payload.keys) == expectedKeys)
     }
 
@@ -95,12 +96,12 @@ struct CaptchaSolverTests {
             _ = try await CaptchaSolver.solve(challenge)
             Issue.record("El CAPTCHA inválido fue aceptado.")
         } catch let error as APIError {
-            switch error {
-            case .validation(let code):
-                #expect(code == "CAPTCHA_INVALID")
-            default:
+            guard case .validation(let code) = error else {
                 Issue.record("Se recibió un error distinto al esperado.")
+                throw error
             }
+
+            #expect(code == "CAPTCHA_INVALID")
         }
     }
 }

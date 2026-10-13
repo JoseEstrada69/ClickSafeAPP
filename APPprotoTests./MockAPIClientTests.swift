@@ -158,12 +158,9 @@ struct MockAPIClientTests {
 
             Issue.record("La solicitud debía fallar sin conexión.")
         } catch let error as APIError {
-            switch error {
-            case .offline:
-                break
-
-            default:
+            guard case .offline = error else {
                 Issue.record("Se recibió un error distinto al esperado.")
+                throw error
             }
         }
 
@@ -195,13 +192,12 @@ struct MockAPIClientTests {
 
             Issue.record("Se aceptó una página inválida.")
         } catch let error as APIError {
-            switch error {
-            case .validation(let code):
-                #expect(code == "INVALID_PAGINATION")
-
-            default:
+            guard case .validation(let code) = error else {
                 Issue.record("Se recibió un error distinto al esperado.")
+                throw error
             }
+
+            #expect(code == "INVALID_PAGINATION")
         }
     }
 }
