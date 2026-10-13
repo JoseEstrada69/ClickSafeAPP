@@ -285,10 +285,10 @@ private final class APIRedirectDelegate:
     URLSessionTaskDelegate
 {
     nonisolated func urlSession(
-        _ session: URLSession,
-        task: URLSessionTask,
-        willPerformHTTPRedirection response: HTTPURLResponse,
-        newRequest request: URLRequest,
+        _: URLSession,
+        task _: URLSessionTask,
+        willPerformHTTPRedirection _: HTTPURLResponse,
+        newRequest _: URLRequest,
         completionHandler: @escaping (URLRequest?) -> Void
     ) {
         completionHandler(nil)
