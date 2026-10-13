@@ -2,13 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
-	<dict>
-		<key>APPproto.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-	</dict>
+	<key>APIBaseURL</key>
+	<string>$(API_BASE_URL)</string>
+	<key>UseMockAPI</key>
+	<string>$(USE_MOCK_API)</string>
 </dict>
 </plist>
