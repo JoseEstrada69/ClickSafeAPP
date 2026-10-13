@@ -3,6 +3,7 @@ import SwiftUI
 @MainActor
 struct MainTabView: View {
     private enum Tab: Hashable { case home, search, report, profile }
+    let api: any APIClient
     @State private var selectedTab: Tab = .home
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -21,11 +22,9 @@ struct MainTabView: View {
             }
             .tabItem { Label("Reportar", systemImage: "plus.circle") }
             .tag(Tab.report)
-            NavigationStack {
-                Color.clear.navigationTitle(Text(verbatim: "Perfil"))
-            }
-            .tabItem { Label("Perfil", systemImage: "person.crop.circle") }
-            .tag(Tab.profile)
+            ProfileScreen(api: api)
+                .tabItem { Label("Perfil", systemImage: "person.crop.circle") }
+                .tag(Tab.profile)
         }
         .tint(Color.csNavy)
     }
