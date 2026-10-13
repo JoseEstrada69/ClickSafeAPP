@@ -208,7 +208,7 @@ actor MockAuthAPIClient: APIClient {
 
             return ["message": "Cuenta verificada."]
 
-        case "auth/resend-verification":
+        case "auth/resend-verification", "auth/forgot-password":
             try validateCaptcha(body)
             return ["message": "Solicitud recibida."]
 
@@ -227,10 +227,6 @@ actor MockAuthAPIClient: APIClient {
             }
 
             return issueTokens(for: correo)
-
-        case "auth/forgot-password":
-            try validateCaptcha(body)
-            return ["message": "Solicitud recibida."]
 
         case "auth/reset-password":
             try validateCaptcha(body)

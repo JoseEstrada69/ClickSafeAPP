@@ -126,11 +126,9 @@ struct TokenStoreTests {
 
                 Issue.record("La renovación debía fallar.")
             } catch let error as APIError {
-                switch error {
-                case .unauthorized:
-                    break
-                default:
+                guard case .unauthorized = error else {
                     Issue.record("Se recibió un error distinto al esperado.")
+                    throw error
                 }
             }
 

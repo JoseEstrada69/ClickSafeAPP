@@ -58,10 +58,9 @@ struct KeychainTokenStoreTests {
                 try await store.saveRefreshToken("")
                 Issue.record("Se aceptó un token vacío.")
             } catch let error as KeychainTokenStore.StoreError {
-                switch error {
-                case .invalidToken:
-                    break
-                default:
+                if case .invalidToken = error {
+                    // Es el error esperado para un token vacío.
+                } else {
                     Issue.record("Se recibió un error distinto al esperado.")
                 }
             }
