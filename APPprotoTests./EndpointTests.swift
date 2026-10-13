@@ -116,11 +116,9 @@ struct EndpointTests {
             _ = try endpoint.makeRequest(baseURL: baseURL)
             Issue.record("Se aceptó una petición sin token.")
         } catch let error as APIError {
-            switch error {
-            case .unauthorized:
-                break
-            default:
+            guard case .unauthorized = error else {
                 Issue.record("Se recibió un error distinto al esperado.")
+                throw error
             }
         }
     }
@@ -140,12 +138,12 @@ struct EndpointTests {
             _ = try endpoint.makeRequest(baseURL: baseURL)
             Issue.record("Se aceptó una ruta inválida.")
         } catch let error as APIError {
-            switch error {
-            case .validation(let code):
-                #expect(code == "INVALID_ENDPOINT")
-            default:
+            guard case .validation(let code) = error else {
                 Issue.record("Se recibió un error distinto al esperado.")
+                throw error
             }
+
+            #expect(code == "INVALID_ENDPOINT")
         }
     }
 }
