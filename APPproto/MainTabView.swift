@@ -7,7 +7,7 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
-                Color.clear.navigationTitle(Text(verbatim: "Inicio"))
+                HomeView()
             }
             .tabItem { Label("Inicio", systemImage: "house") }
             .tag(Tab.home)
