@@ -11,7 +11,7 @@ en linea.
 - Carlos Emilio Romero Rubio
 
 ## Datos técnicos
-- Versión de Xcode: 0.1
+- Versión de Xcode: 26
 - Modelo de iPhone en el simulador: iPhone 11
 
 ## Acuerdos básicos de colaboración
@@ -19,9 +19,17 @@ en linea.
 - Desarrollar cada funcionalidad en una rama independiente (`feature/`).
 - Utilizar mensajes de commit claros y descriptivos.
 - Revisar el código mediante Pull Requests antes de integrarlo.
+- Atender la retroalimentación recibida.
+- Mantener una comunicación respetuosa y centrada en el código.
 
-## Asignacion de funcionalidades        | Funcionalidad       | Rama
-- Jose Estrada Miranda                  | Crear reporte       | feature/Creporte
-- Uriel Suarez Lopez                    | Registro de usuario | feature/RegUsuario
-- Carlos Emilio Romero Rubio            | Menu principal      | feature/MePrincipal
-- Diego Alejandro Hernandez Santiago    | Buscar reporte      | feature/Buporte
+## Convención de ramas
+`feature/NombreBreveDeLaFuncionalidad` (por ejemplo, `feature/MePrincipal`), siempre creada a partir de la versión más reciente de `main`.
+
+## Asignación de funcionalidades
+
+| Integrante | Funcionalidad | Rama |
+|---|---|---|
+| Jose Estrada Miranda | Crear reporte | `feature/Creporte` |
+| Uriel Suarez Lopez | Registro de usuario | `feature/RegUsuario` |
+| Carlos Emilio Romero Rubio | Menú principal | `feature/MePrincipal` |
+| Diego Alejandro Hernandez Santiago | Buscar reporte | `feature/Buporte` |
