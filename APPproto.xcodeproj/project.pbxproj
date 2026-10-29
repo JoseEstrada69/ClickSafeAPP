@@ -6,19 +6,55 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		C2650F913075CC1700483C09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB1494E6304B96960001B1DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB1494ED304B96960001B1DC;
+			remoteInfo = APPproto;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		C2650F8D3075CC1700483C09 /* APPprotoTests..xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APPprotoTests..xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1494EE304B96960001B1DC /* APPproto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APPproto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C2E38A6830742ED500DC24B4 /* Exceptions for "APPproto" folder in "APPproto" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FB1494ED304B96960001B1DC /* APPproto */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		C2650F8E3075CC1700483C09 /* APPprotoTests. */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = APPprotoTests.;
+			sourceTree = "<group>";
+		};
 		FB1494F0304B96960001B1DC /* APPproto */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C2E38A6830742ED500DC24B4 /* Exceptions for "APPproto" folder in "APPproto" target */,
+			);
 			path = APPproto;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C2650F8A3075CC1700483C09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FB1494EB304B96960001B1DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				FB1494F0304B96960001B1DC /* APPproto */,
+				C2650F8E3075CC1700483C09 /* APPprotoTests. */,
 				FB1494EF304B96960001B1DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				FB1494EE304B96960001B1DC /* APPproto.app */,
+				C2650F8D3075CC1700483C09 /* APPprotoTests..xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +86,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C2650F8C3075CC1700483C09 /* APPprotoTests. */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2650F933075CC1700483C09 /* Build configuration list for PBXNativeTarget "APPprotoTests." */;
+			buildPhases = (
+				C2650F893075CC1700483C09 /* Sources */,
+				C2650F8A3075CC1700483C09 /* Frameworks */,
+				C2650F8B3075CC1700483C09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2650F923075CC1700483C09 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C2650F8E3075CC1700483C09 /* APPprotoTests. */,
+			);
+			name = APPprotoTests.;
+			packageProductDependencies = (
+			);
+			productName = APPprotoTests.;
+			productReference = C2650F8D3075CC1700483C09 /* APPprotoTests..xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FB1494ED304B96960001B1DC /* APPproto */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB1494F9304B96970001B1DC /* Build configuration list for PBXNativeTarget "APPproto" */;
@@ -77,9 +138,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2650;
-				LastUpgradeCheck = 2650;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
+					C2650F8C3075CC1700483C09 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = FB1494ED304B96960001B1DC;
+					};
 					FB1494ED304B96960001B1DC = {
 						CreatedOnToolsVersion = 26.5;
 					};
@@ -100,11 +165,19 @@
 			projectRoot = "";
 			targets = (
 				FB1494ED304B96960001B1DC /* APPproto */,
+				C2650F8C3075CC1700483C09 /* APPprotoTests. */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C2650F8B3075CC1700483C09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FB1494EC304B96960001B1DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +188,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C2650F893075CC1700483C09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FB1494EA304B96960001B1DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +204,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C2650F923075CC1700483C09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB1494ED304B96960001B1DC /* APPproto */;
+			targetProxy = C2650F913075CC1700483C09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		C2650F943075CC1700483C09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.APPprotoTests-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APPproto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APPproto";
+			};
+			name = Debug;
+		};
+		C2650F953075CC1700483C09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.APPprotoTests-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APPproto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APPproto";
+			};
+			name = Release;
+		};
 		FB1494F7304B96970001B1DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -183,6 +311,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -239,6 +368,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -246,18 +376,23 @@
 		};
 		FB1494FA304B96970001B1DC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = FB1494F0304B96960001B1DC /* APPproto */;
+			baseConfigurationReferenceRelativePath = Config/Debug.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = APPproto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -277,18 +412,23 @@
 		};
 		FB1494FB304B96970001B1DC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = FB1494F0304B96960001B1DC /* APPproto */;
+			baseConfigurationReferenceRelativePath = Config/Release.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = APPproto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +449,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C2650F933075CC1700483C09 /* Build configuration list for PBXNativeTarget "APPprotoTests." */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2650F943075CC1700483C09 /* Debug */,
+				C2650F953075CC1700483C09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FB1494E9304B96960001B1DC /* Build configuration list for PBXProject "APPproto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

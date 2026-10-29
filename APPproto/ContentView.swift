@@ -1,24 +1,10 @@
-//
-//  ContentView.swift
-//  APPproto
-//
-//  Created by alumno on 04/09/26.
-//
-
 import SwiftUI
 
+@MainActor
 struct ContentView: View {
+    let configuration: AppConfig
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        MainTabView()
+            .environment(\.mockEvidenceImagesEnabled, configuration.useMockAPI)
     }
-}
-
-#Preview {
-    ContentView()
 }

@@ -1,0 +1,12 @@
+//
+//  Debug.xcconfig
+//  APPproto
+//
+//  Created by Uriel Suarez Lopez on 05/10/26.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+API_BASE_URL = http:/$()/localhost:3000/api/v1
+USE_MOCK_API = YES

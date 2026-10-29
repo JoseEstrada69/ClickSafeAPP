@@ -67,3 +67,11 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Signing material
+*.p12
+*.pfx
+*.p8
+*.key
+*.pem
+*.cer
