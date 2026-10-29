@@ -7,7 +7,10 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
-                HomeView()
+                HomeView(
+                    onReport: { selectedTab = .report },
+                    onSearch: { selectedTab = .search }
+                )
             }
             .tabItem { Label("Inicio", systemImage: "house") }
             .tag(Tab.home)

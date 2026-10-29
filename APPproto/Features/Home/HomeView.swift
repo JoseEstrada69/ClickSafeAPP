@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct HomeView: View {
+    let onReport: () -> Void
+    let onSearch: () -> Void
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.Spacing.betweenBlocks) {
                 header
+                quickActions
             }
             .padding(Theme.Spacing.screenMargin)
         }
@@ -34,18 +38,32 @@ struct HomeView: View {
                 .foregroundStyle(Color.csTextSecondary)
         }
     }
+
+    private var quickActions: some View {
+        CSCard {
+            VStack(alignment: .leading, spacing: Theme.Spacing.withinCard) {
+                Text(verbatim: "¿Qué quieres hacer?")
+                    .font(.headline)
+                    .foregroundStyle(Color.csTextPrimary)
+
+                PrimaryButton(title: "Reportar posible fraude", action: onReport)
+
+                SecondaryButton(title: "Buscar un reporte", action: onSearch)
+            }
+        }
+    }
 }
 
 #Preview("Claro") {
     NavigationStack {
-        HomeView()
+        HomeView(onReport: {}, onSearch: {})
     }
     .preferredColorScheme(.light)
 }
 
 #Preview("Oscuro") {
     NavigationStack {
-        HomeView()
+        HomeView(onReport: {}, onSearch: {})
     }
     .preferredColorScheme(.dark)
 }
